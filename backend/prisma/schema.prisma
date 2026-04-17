@@ -12,4 +12,20 @@ model User {
   email     String   @unique
   password  String
   createdAt DateTime @default(now())
+  categories Category[]
+}
+
+enum CategoryType {
+      INCOME 
+      EXPENSE
+}
+
+model Category{
+  id        Int     @id@default(autoincrement())
+  name      String
+  type      CategoryType
+  userId    Int
+  user      User @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+
 }
