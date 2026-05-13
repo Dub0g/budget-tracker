@@ -10,6 +10,7 @@ export class AnalyticsController {
 
   @Get()
   getSummary(@Request() req, @Query() dto: GetAnalyticsDto) {
+
     return this.analyticsService.getSummary(req.user.id, dto);
   }
 }
