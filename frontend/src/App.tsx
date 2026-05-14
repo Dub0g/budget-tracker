@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 
+import PrivateRoute from './components/PrivateRoute'
 
 function App() {
   return (
@@ -10,9 +11,22 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/dashboard" element={<div>Dashboard Page</div>} />
-        <Route path="/transactions" element={<div>Transactions Page</div>} />
-        <Route path="/categories" element={<div>Categories Page</div>} />
+        <Route path="/dashboard" element={
+          <PrivateRoute>
+            <div>Dashboard Page</div>
+          </PrivateRoute>
+        } />
+
+        <Route path="/transactions" element={
+          <PrivateRoute>
+            <div>Transactions Page</div>
+          </PrivateRoute>
+        } />
+        <Route path="/categories" element={
+          <PrivateRoute>
+            <div>Categories Page</div>
+          </PrivateRoute>
+        } />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </BrowserRouter>
